@@ -1,0 +1,46 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: leyou-gateway
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+zuul:
+  host:
+    connect-timeout-millis: 15000 #HTTP连接超时大于Hystrix的超时时间
+    socket-timeout-millis: 60000   #socket超时
+  prefix: /api # 路由路径前缀
+  ignored-services:
+    - upload-service # 忽略upload-service服务
+  routes:
+    item-service: /item/** # 商品微服务的映射路径
+    search-service: /search/** # 搜索微服务的映射路径
+    user-service: /user/** # 用户登入的映射路径
+    auth-service: /auth/** # 授权中心微服务
+    cart-service: /cart/** # 购物车微服务
+    order-service: /order/** # 订单微服务
+
+  add-host-header: true #携带请求本身转发的头信息
+  sensitive-headers:  #配置禁止使用的头信息,这里设置为null,否则设置cookie无效
+
+  ribbon:        #设置ribbon的超时时间小于zuul的超时时间
+    ReadTimeout: 10000
+    ConnectTimeout: 10000
+leyou:
+  jwt:
+    pubKeyPath: D:\\idea_workspace\\rsa\\rsa.pub # 公钥地址
+    cookieName: LY_TOKEN # cookie的名称
+  filter:
+    allowPaths:
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item
+
+
+
