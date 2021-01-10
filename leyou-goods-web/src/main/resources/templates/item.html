@@ -372,7 +372,7 @@
                             <div class="fl suits">
                                 <ul class="suit-list">
                                     <li class="">
-                                        <div id="">
+                                        <div >
                                             <img src="/img/_/dp01.png"/>
                                         </div>
                                         <i>Feless费勒斯VR</i>
@@ -381,14 +381,14 @@
                                         </label>
                                     </li>
                                     <li class="">
-                                        <div id=""><img src="/img/_/dp02.png"/></div>
+                                        <div ><img src="/img/_/dp02.png"/></div>
                                         <i>Feless费勒斯VR</i>
                                         <label data-toggle="checkbox" class="checkbox-pretty">
                                             <input type="checkbox"><span>50</span>
                                         </label>
                                     </li>
                                     <li class="">
-                                        <div id=""><img src="/img/_/dp03.png"/></div>
+                                        <div ><img src="/img/_/dp03.png"/></div>
                                         <i>Feless费勒斯VR</i>
                                         <label data-toggle="checkbox" class="checkbox-pretty">
                                             <input type="checkbox"><span>59</span>
@@ -664,7 +664,7 @@
             addCart(){
                 leyou.http.get("/auth/verify").then(res=>{
                     // 已登录发送信息到后台，保存到redis中
-                    leyou.http.post("/cart", {skuId: this.sku.id, num: this.num}).then(res=>{
+                    leyou.http.post("/cart/addCart", {skuId: this.sku.id, num: this.num}).then(res=>{
                         window.location = "http://www.leyou.com/cart.html";
                     })
                 }).catch(()=>{
