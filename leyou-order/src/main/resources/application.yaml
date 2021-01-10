@@ -16,7 +16,7 @@ spring:
       max-wait: 1000
       test-on-borrow: true
   rabbitmq:
-    host: 192.168.31.168
+    host: 192.168.137.65
     username: leyou
     password: leyou
     virtual-host: /leyou
@@ -29,7 +29,7 @@ spring:
       exchange: leyou.item.exchange
     publisher-confirms: true
   redis:
-    host: 192.168.31.168
+    host: 192.168.37.65
 eureka:
   client:
     service-url:

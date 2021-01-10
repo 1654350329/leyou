@@ -5,6 +5,8 @@ import com.leyou.auth.utils.JwtUtils;
 import com.leyou.common.utils.CookieUtils;
 import com.leyou.config.JwtProperties;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -14,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     private JwtProperties jwtProperties;
-
+    private static Logger logger= LoggerFactory.getLogger(LoginInterceptor.class);
     // 定义一个线程域，存放登录用户
     private static final ThreadLocal<UserInfo> tl = new ThreadLocal<>();
 
@@ -26,6 +28,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 查询token
         String token = CookieUtils.getCookieValue(request, "LY_TOKEN");
+        logger.info("订单用户TOKEN："+token);
         if (StringUtils.isBlank(token)) {
             // 未登录,返回401
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
