@@ -21,7 +21,7 @@ public class CartController {
      *
      * @return
      */
-    @PostMapping
+    @PostMapping("addCart")
     public ResponseEntity<Void> addCart(@RequestBody Cart cart) {
         this.cartService.addCart(cart);
         return ResponseEntity.ok().build();
@@ -32,7 +32,7 @@ public class CartController {
      *
      * @return
      */
-    @GetMapping
+    @GetMapping("list")
     public ResponseEntity<List<Cart>> queryCartList() {
         List<Cart> carts = this.cartService.queryCartList();
         if (carts == null) {
